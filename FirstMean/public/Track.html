@@ -1,0 +1,85 @@
+<html ng-app="TrackApp">
+    <head>
+        <title> Category </title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    </head>
+    <body>
+        <form name="frmTrack">
+        <div class="container" ng-controller="TrackCtrl" >
+            <h2>Track </h2>
+            <div class="row" style="padding:3px">
+                <div class="col-md-3">Category</div>
+                <div class="col-md-4">
+                    <select name="cboCategory" ng-model="data.Category" ng-options="category.CategoryName for category in Categories" required></select>
+                    <!--<select name="cboCategory" ng-model="data.Category">
+                    <option value="Food" >Food</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Vechicle">Vechicle</option>
+                    </select>-->
+                </div>
+            </div>
+            <div class="row" style="padding:3px">
+               <div class="col-md-3">Date</div>
+               <div class="col-md-4">
+                    <input type="date" id="trackDate" name="input" ng-model="data.TrackDate"
+                        min="2016-01-01" max="2020-12-31" required />
+                </div> 
+            </div>
+            <div class="row" style="padding:3px">
+               <div class="col-md-3">Amount</div>
+               <div class="col-md-4">
+                    <input id="amount" name="input" ng-model="data.Amount"
+                        type="number" required />
+                </div> 
+            </div>
+            <div class="row" style="padding:3px">
+               <div class="col-md-3">Description</div>
+               <div class="col-md-4">
+                    <input id="description" name="input" ng-model="data.Description" />
+                </div> 
+            </div>
+            <div class="row" style="padding:3px">
+                <div class="col-md-6">
+                    <button class="btn btn-primary" ng-click="frmTrack.$valid &&  addTrack()">Add </button>
+                    <button class="btn btn-info" ng-click="clearTrack()">Clear</button>
+                </div>
+            </div>
+            <div class="row" style="padding:10px">
+                <div  class="col-md-2"> <input type="month" name="dtMonth" ng-model="selectedMonth" ng-change="onMonthChange()"> </div>
+                <div  class="col-md-2"> Total Expense :  {{monthSum.Total}}</div> 
+            </div>
+        <div class="container" style="padding:5px">
+            <div class="row" style="padding:1px">
+                <div class="col-md-2"><strong>Category Name</strong></div>
+               <div class="col-md-2"><strong>Total</strong></div>
+            </div>
+            <hr style="border-width:1px;border-style: inset">
+            <div class="row" ng-repeat="catgory in CategoryWiseTrack" style="padding:1px">
+                <div class="col-md-2">{{catgory._id}}</div>
+                   <div class="col-md-2">{{catgory.Total}}</div>
+            </div>
+        </div>
+            <!--<table class="table">
+            <thead>
+                <th>Category Name</th>
+                <th>{{CategoryWiseTrack}}</th>
+                <th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="catgory in CategoryWiseTrack">
+                    <td>{{catgory._id}}</td>
+                    <td>{{catgory.Total}}</td>
+                    </tr>
+            </tbody>
+        </table>    -->
+            
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="controller/Track.js"></script>
+    <div>
+    </form>
+    </body>
+</html>
+    
